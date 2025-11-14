@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Persetujuan Mandi-Mandi </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            transition: 0.2s;
+        }
+
+        #gas {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #tidak {
+            background: #e74c3c;
+            color: white;
+            position: relative;
+        }
+
+        #pesan {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>AYOK KITA PERGI MANDI-MANDI</h2>
+        <button id="gas">GAS</button>
+        <button id="tidak">TIDAK</button>
+
+        <div id="pesan">Terimakasih by Ridwan — DEMMM!</div>
+    </div>
+
+    <script>
+        const tidak = document.getElementById("tidak");
+        const gas = document.getElementById("gas");
+        const pesan = document.getElementById("pesan");
+
+        // Tombol TIDAK lari
+        tidak.addEventListener("mouseover", function () {
+            const randomX = Math.floor(Math.random() * 200) - 100;
+            const randomY = Math.floor(Math.random() * 200) - 100;
+
+            tidak.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        });
+
+        // Tombol GAS tampilkan pesan
+        gas.addEventListener("click", function () {
+            pesan.style.display = "block";
+            pesan.style.animation = "zoom 0.3s ease";
+
+            // efek kecil "DEMMM"
+            const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+            audio.play();
+        });
+    </script>
+
+</body>
+</html>
