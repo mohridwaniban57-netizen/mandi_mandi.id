@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Persetujuan Mandi-Mandi </title>
+    <title>Persetujuan Mandi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,8 +32,8 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 17px;
-            transition: 0.2s;
+            font-size: 16px;
+            transition: 0.3s;
         }
 
         #gas {
@@ -44,7 +44,6 @@
         #tidak {
             background: #e74c3c;
             color: white;
-            position: relative;
         }
 
         #pesan {
@@ -53,6 +52,16 @@
             font-weight: bold;
             color: #2c3e50;
             display: none;
+        }
+
+        /* efek hilang perlahan */
+        .fade-out {
+            animation: fadeout 1s forwards;
+        }
+
+        @keyframes fadeout {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
     </style>
 </head>
@@ -67,26 +76,28 @@
     </div>
 
     <script>
-        const tidak = document.getElementById("tidak");
         const gas = document.getElementById("gas");
+        const tidak = document.getElementById("tidak");
         const pesan = document.getElementById("pesan");
 
-        // Tombol TIDAK lari
-        tidak.addEventListener("mouseover", function () {
-            const randomX = Math.floor(Math.random() * 200) - 100;
-            const randomY = Math.floor(Math.random() * 200) - 100;
-
-            tidak.style.transform = `translate(${randomX}px, ${randomY}px)`;
-        });
-
-        // Tombol GAS tampilkan pesan
+        // Klik GAS → tampilkan pesan
         gas.addEventListener("click", function () {
             pesan.style.display = "block";
-            pesan.style.animation = "zoom 0.3s ease";
 
-            // efek kecil "DEMMM"
             const audio = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
             audio.play();
+        });
+
+        // Klik TIDAK → berubah jadi teks dan menghilang
+        tidak.addEventListener("click", function () {
+            tidak.outerHTML = "<span id='hilang'>TIDAK...</span>";
+
+            const span = document.getElementById("hilang");
+            span.classList.add("fade-out");
+
+            setTimeout(() => {
+                span.remove();
+            }, 1000);
         });
     </script>
 
